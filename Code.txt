@@ -1,4 +1,7 @@
-# Copy & paste the code below.
+## ┌──────────────────────────────────────────────────────────────────────────────────────────────────────┐
+## │  authorship: tensorflow reference | https://www.tensorflow.org/tutorials/keras/classification?hl=ko  │
+## │  Copy & paste the code below.                                                                        │
+## └──────────────────────────────────────────────────────────────────────────────────────────────────────┘
 
 # tensorflow와 keras를 import
 import tensorflow as tf
