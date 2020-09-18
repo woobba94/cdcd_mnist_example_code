@@ -1,1 +1,39 @@
-# cdcd_mnist_example_code
+# Copy & paste the code below.
+
+# tensorflow와 keras를 import
+import tensorflow as tf
+from tensorflow import keras
+
+# 헬퍼(helper) 라이브러리를 import
+import numpy as np
+
+# 패션 MNIST 데이터셋 임포트
+fashion_mnist = keras.datasets.fashion_mnist
+
+(train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
+
+
+# 전처리 (데이터를 0~1 사이 값으로 조정)
+train_images = train_images / 255.0
+
+test_images = test_images / 255.0
+
+# 층(레이어) 설정
+model = keras.Sequential([
+  keras.layers.Flatten(input_shape=(28, 28)), # 이미지에 있는 픽셀의 행을 펼쳐서 일렬로 늘리는 층
+  keras.layers.Dense(128, activation='relu'), # 128개의 노드
+  keras.layers.Dense(10, activation='softmax') # 10개의 확률을 반환, 반환된 값의 전체 합은 1, 이미지가 각 클래스(10개)에 속할 확률을 반환
+])
+
+# 모델 컴파일 설정
+model.compile(optimizer='adam', # 데이터와 손실 함수를 바탕으로 모델의 업데이트 방법을 결정
+              loss='sparse_categorical_crossentropy', # 모델의 오차를 측정
+              metrics=['accuracy']) # 훈련 단계와 테스트 단계를 모니터링(정확도 측정)
+
+# 신경망 모델을 훈련
+model.fit(train_images, train_labels, epochs=5)
+
+# 정확도 평가
+test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
+
+print('\n테스트 정확도:', test_acc)
