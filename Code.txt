@@ -1,4 +1,4 @@
-# Copy & paste the code below.
+# Copy & paste the code below
 
 # tensorflow와 keras를 import
 import tensorflow as tf
